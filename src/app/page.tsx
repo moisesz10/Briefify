@@ -1,69 +1,37 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
+    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem' }}>
+      <div className="container animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)', alignItems: 'center' }}>
+        <div className="glass-panel" style={{ padding: 'var(--spacing-xl)', borderRadius: 'var(--radius-lg)' }}>
+          <h1 style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: 'var(--spacing-md)', lineHeight: 1.1 }}>
+            Transforme Textos em <br />
+            <span className="gradient-text">Áudio com Inteligência Artificial</span>
           </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto var(--spacing-xl) auto' }}>
+            O Briefify resume textos gigantes e PDFs, entregando o essencial direto nos seus fones de ouvido. Consuma conteúdo 10x mais rápido.
           </p>
+          <div style={{ display: 'flex', gap: 'var(--spacing-md)', justifyContent: 'center' }}>
+            <Link href="/login" className="btn-primary" style={{ fontSize: '1.1rem' }}>
+              Começar Gratuitamente
+            </Link>
+            <Link href="#features" className="btn-secondary" style={{ fontSize: '1.1rem' }}>
+              Saiba Mais
+            </Link>
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </div>
+      
+      {/* Background blobs for aesthetic */}
+      <div style={{
+        position: 'absolute', top: '10%', left: '10%', width: '400px', height: '400px', 
+        background: 'var(--accent-primary)', filter: 'blur(150px)', opacity: 0.15, borderRadius: '50%', zIndex: -1
+      }}></div>
+      <div style={{
+        position: 'absolute', bottom: '10%', right: '10%', width: '300px', height: '300px', 
+        background: '#ec4899', filter: 'blur(150px)', opacity: 0.15, borderRadius: '50%', zIndex: -1
+      }}></div>
+    </main>
   );
 }
