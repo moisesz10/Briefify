@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center">Briefify - Micro-SaaS AI</h1>
 
-## Getting Started
+<p align="center">
+  <strong>Transform long texts into consumable audio summaries in seconds.</strong>
+</p>
 
-First, run the development server:
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-14-black?logo=next.js" alt="Next.js" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Prisma-2D3748?logo=prisma&logoColor=white" alt="Prisma ORM" />
+  <img src="https://img.shields.io/badge/Stripe-6772E5?logo=stripe&logoColor=white" alt="Stripe Payments" />
+  <img src="https://img.shields.io/badge/NextAuth.js-000000?logo=nextauth.js&logoColor=white" alt="NextAuth" />
+  <img src="https://img.shields.io/badge/Gemini_AI-8E75B2?logo=google&logoColor=white" alt="Gemini AI" />
+</p>
 
+---
+
+## About the Project
+Briefify is a comprehensive demonstration of a full-stack digital product. It is built to simulate real-world challenges encountered in SaaS environments, making it a perfect showcase of engineering capabilities.
+
+It demonstrates proficiency in critical areas highly sought after by startups and fintechs:
+- **Business Logic & Monetization:** Server-to-server integration with the Stripe API using Webhooks to securely validate and provision premium access.
+- **Security & Authentication (OAuth 2.0):** Robust session management using NextAuth with Google and GitHub providers.
+- **LLM Integration (Artificial Intelligence):** Integration with the Google Gemini API to orchestrate the processing and summarization of large text volumes.
+- **Database Design:** Data modeling with Prisma ORM to manage users, sessions, and subscriptions efficiently.
+- **Architecture & Clean Code:** Modular, componentized code focused on scalability (Next.js App Router) and styled with Vanilla CSS using design tokens, demonstrating a strong grasp of CSS fundamentals without relying on utility frameworks.
+
+---
+
+## Features
+
+1. **Seamless Authentication** 
+   - Login via Google or GitHub. We do not store passwords, delegating security responsibilities to mature OAuth providers.
+
+2. **Paywall & Stripe Webhooks**
+   - Free-tier users cannot consume the AI API and must upgrade their plan.
+   - The Checkout routes users to the secure Stripe platform.
+   - The backend actively listens to payment events (`checkout.session.completed` and `invoice.payment_succeeded`) via secure Webhooks (verified by cryptographic signature) to update the user's status in the database.
+
+3. **AI-Powered Summarization**
+   - Utilizes the **Gemini 2.5 Flash** model to condense articles of thousands of words into a digestible and conversational format.
+
+4. **Native Text-to-Speech**
+   - The application leverages the browser's native *Web Speech API* to synthesize the AI-generated text into natural audio, optimizing infrastructure costs without relying on paid third-party audio APIs.
+
+---
+
+## Technical Architecture
+
+- **Frontend/Backend:** Next.js (App Router)
+- **Database:** SQLite (Easily migratable to PostgreSQL via Prisma)
+- **Styling:** Pure CSS with global variables (`globals.css`), focused on a Glassmorphism aesthetic, responsive UI, and micro-animations.
+- **Code Standards:** ESLint, Prettier, TypeScript Strict Mode.
+
+---
+
+## How to Run Locally
+
+### 1. Clone the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/moisesz10/Briefify.git
+cd Briefify
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Configure Environment Variables
+Create a `.env` file in the root directory and fill in the following keys:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+DATABASE_URL="file:./dev.db"
 
-## Learn More
+# NextAuth
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your_secret_string_here"
 
-To learn more about Next.js, take a look at the following resources:
+# OAuth Providers (Get these from Google/GitHub developer consoles)
+GOOGLE_ID="your_google_id"
+GOOGLE_SECRET="your_google_secret"
+GITHUB_ID="your_github_id"
+GITHUB_SECRET="your_github_secret"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Stripe (Get these from your Stripe Dashboard in "Test Mode")
+STRIPE_SECRET_KEY="sk_test_..."
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_..."
+STRIPE_WEBHOOK_SECRET="whsec_..."
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Google Gemini API
+GEMINI_API_KEY="your_google_ai_studio_key"
+```
 
-## Deploy on Vercel
+### 4. Initialize the Database
+```bash
+npx prisma db push
+npx prisma generate
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 5. Start the Development Server
+```bash
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+
+---
+
+## Author
+
+Created by [Moises](https://github.com/moisesz10). Feel free to reach out and explore my portfolio. Open to new software engineering opportunities!
