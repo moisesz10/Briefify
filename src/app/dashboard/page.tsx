@@ -43,6 +43,22 @@ export default function DashboardPage() {
 
     const utterance = new SpeechSynthesisUtterance(summary);
     utterance.lang = 'pt-BR';
+    
+    // Tenta encontrar uma voz mais natural (Premium, Google, ou Microsoft)
+    const voices = window.speechSynthesis.getVoices();
+    const ptVoices = voices.filter(v => v.lang.includes('pt-BR') || v.lang.includes('pt_BR'));
+    const bestVoice = ptVoices.find(v => 
+      v.name.includes('Google') || 
+      v.name.includes('Premium') || 
+      v.name.includes('Natural') ||
+      v.name.includes('Microsoft Francisca') ||
+      v.name.includes('Microsoft Antonio')
+    ) || ptVoices[0];
+    
+    if (bestVoice) {
+      utterance.voice = bestVoice;
+    }
+
     utterance.onend = () => setIsPlaying(false);
     
     setIsPlaying(true);

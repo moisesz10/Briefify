@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     const prompt = `Você é um assistente especialista em resumir textos. Resuma o seguinte texto de forma clara, concisa e direta ao ponto, ideal para ser lido em voz alta (em áudio). Evite listas complexas, use um tom conversacional.\n\nTexto:\n${text}`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3.6-flash',
       contents: prompt,
     });
 
