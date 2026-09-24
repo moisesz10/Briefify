@@ -13,6 +13,12 @@
   <img src="https://img.shields.io/badge/Gemini_AI-8E75B2?logo=google&logoColor=white" alt="Gemini AI" />
 </p>
 
+<br />
+
+<p align="center">
+  <img src="public/screenshot.png" alt="Briefify App Screenshot" width="100%" style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);" />
+</p>
+
 ---
 
 ## About the Project
