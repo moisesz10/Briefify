@@ -6,6 +6,8 @@ import { GoogleGenAI } from '@google/genai';
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
+const SYSTEM_PROMPT = `Você é um assistente especialista em resumir textos. Resuma o seguinte texto de forma clara, concisa e direta ao ponto, ideal para ser lido em voz alta (em áudio). Evite listas complexas, use um tom conversacional.\n\nTexto:\n`;
+
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions);
 
@@ -29,11 +31,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Texto inválido' }, { status: 400 });
     }
 
-    const prompt = `Você é um assistente especialista em resumir textos. Resuma o seguinte texto de forma clara, concisa e direta ao ponto, ideal para ser lido em voz alta (em áudio). Evite listas complexas, use um tom conversacional.\n\nTexto:\n${text}`;
-
     const response = await ai.models.generateContent({
       model: 'gemini-3.6-flash',
-      contents: prompt,
+      contents: SYSTEM_PROMPT + text,
     });
 
     return NextResponse.json({ summary: response.text }, { status: 200 });
