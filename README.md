@@ -43,8 +43,8 @@ It demonstrates proficiency in critical areas highly sought after by startups an
    - The Checkout routes users to the secure Stripe platform.
    - The backend actively listens to payment events (`checkout.session.completed` and `invoice.payment_succeeded`) via secure Webhooks (verified by cryptographic signature) to update the user's status in the database.
 
-3. **AI-Powered Summarization**
-   - Utilizes the **Gemini 2.5 Flash** model to condense articles of thousands of words into a digestible and conversational format.
+3. **AI-Powered Summarization & Audio Generation (TTS)**
+   - Utilizes the **Gemini 3.6 Flash** model to condense articles of thousands of words into a digestible and conversational format, coupled with browser Text-To-Speech for accessibility.
 
 4. **Native Text-to-Speech**
    - The application leverages the browser's native *Web Speech API* to synthesize the AI-generated text into natural audio, optimizing infrastructure costs without relying on paid third-party audio APIs.
